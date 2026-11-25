@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>eeOS</title>
+    </head>
+    <body>
+        <script>
+            /*! eeOS Loader v0.0.0 */
+            async function loadKernel() {
+                try {
+                    fetch("./kernel.js").then(async(r) => {
+                        if(r&&r.ok) {
+                            document.head.appendChild(document.createElement("script").innerText=r)
+                        } else {
+                            throw new Error("Failed to fetch!");
+                        }
+                    })
+                } catch (error) {
+                    alert("Failed to load kernel, report this to the developers!\nError:"+error);
+                }
+            }
+            loadKernel();
+        </script>
+    </body>
+</html>
