@@ -1,3 +1,4 @@
+import { copyFileSync } from "node:fs";
 import path from "node:path";
 import webpack from "webpack";
 const __dirname = process.cwd();
@@ -15,17 +16,5 @@ webpack({
     }
 
 });
-console.log("Building loader...");
-webpack({
-    mode: "production",
-    entry: "./src/loader/index.html",
-    output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "index.html",
-    },
-}, (err, stats) => {
-    if (err || stats.hasErrors()) {
-        throw new Error(`Failed build: ${err}`)
-    }
-
-});
+console.log("Copying loader...");
+copyFileSync(path.resolve(__dirname, "src", "loader", "index.html"), path.resolve(__dirname, "dist", "index.html"));

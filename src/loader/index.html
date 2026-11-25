@@ -12,7 +12,9 @@
                 try {
                     fetch("./kernel.js").then(async(r) => {
                         if(r&&r.ok) {
-                            document.head.appendChild(document.createElement("script").innerText=r)
+                            const s = document.createElement("script");
+                            s.innerText = await r.text();
+                            document.head.appendChild(s);
                         } else {
                             throw new Error("Failed to fetch!");
                         }
